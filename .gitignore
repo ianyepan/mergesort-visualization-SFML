@@ -1,0 +1,9 @@
+gmon.out
+*.stats
+Thumbs.db
+.DS_Store
+build
+bin
+.vscode
+.cache/
+.projectile

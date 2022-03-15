@@ -1,0 +1,5 @@
+---
+Checks:          'clang-diagnostic-*,clang-analyzer-*,modernize-use-*'
+WarningsAsErrors: ''
+HeaderFilterRegex: ''
+FormatStyle: 'google'
