@@ -10,16 +10,16 @@ Bar::Bar(int _n, float _dy) : n(_n), dy(_dy) {
   rect->setOutlineColor(sf::Color::Black);
 }
 
+auto Bar::getN() const -> int {
+  return n;
+}
+
 void Bar::setN(int _n) {
   n = _n;
   rect->setSize(sf::Vector2f(w, dy * n));
   rect->setOrigin(0, dy * n);
 }
 
-auto Bar::getN() const -> int {
-  return n;
-}
-
-auto Bar::getRect() -> sf::RectangleShape & {
+auto Bar::getRect() const -> sf::RectangleShape & {
   return *rect;
 }

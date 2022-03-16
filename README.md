@@ -1,33 +1,39 @@
-# sfml_cmake_skeleton
-Skeleton project folder for building SFML-project with CMake
+## Credits
 
+This repo is a refactor of lutrarutra's sfml\_sortingAlgs:
+https://github.com/lutrarutra/sfml_sortingAlgs
 
-# How to build?
-#### You need CMake. Install it for command line atleast. If you are not sure if you have it: `cmake --version`
-#### After installing CMake  follow steps 1-7
-1. Clone project or download Zip-file and unzip it
-2. Open terminal inside of the project
-3. `mkdir build` -  to make "build" directory inside of project folder
-4. `cd ./build` - go inside of "build" folder
-5. `cmake ./../'` - to link files
-6. `make` - to build project
-7. `./a` - to display output
+It is my first exposure to SFML.
 
-# How to use?
-#### If you are new to CMake don't worry so am I. I made this for myself so it will be easy to copy this for new project and be ready to go without additional hassle.
-- In project folder you will find "CMakeLists.txt". Don't rename it and don't move it if you don't know what you are doing.
-- Add your ".cpp"-files here: `set(SOURCES src/main.cpp 'here')`. Don't forget "`src/`".
-- Create your header files (".h/.hpp")-files inside of src folder. If you want to put them into different folder just modify this line: `include_directories(your_include_folder_name)`
-- If your project uses additional files like images or fonts keep them in "res" folder. and add this line for each additional file `configure_file(res/filename.extension filename.extension COPYONLY)`
+I refactored the project because I felt it was a good way to learn
+SFML and at the same time practice incorporating modern C++ features
+into an existing code base.
 
+## Overview of changes I made
 
-# Not working?
-If you have renamed your project folder after building the project try this: 
-- Delete everything inside of "build" folder. Do steps 5-7 again inside of empty "build" folder.
+- RAII: Use modern C++ smart pointers instead of raw pointers with new and
+  delete.
+  - use std::unique\_ptr and std::move().
+  - remove unnecessary destructors.
+  - pass object by reference instead of pointers (when ownership is
+    not the focus).
 
+- Use std::random_device and random engine for shuffling.
 
-# Additional info
-- This skeleton uses SFML version 2.5.1. You can update SFML by simply downloading new version from: "https://github.com/SFML/SFML" and replacing "SFML-2.5.1"-folder with new version.
+- Mark class member functions "const" when possible.
 
-- https://github.com/lutrarutra/sfml_cmake_skeleton/
-- Creator: lutrarutra
+- Use modern C++ features like member initializer list, auto trailing
+  return type, and auto type deduction when possible.
+
+- Change all C-style arrays to std::vectors and pass them by const reference.
+  - (possible optimization: maybe use std::array instead?)
+
+- Refactored header files under "/include", and separate utility
+  functions and variables into their own namespaces.
+  - generous usage of "inline constexpr" (C++17) for global constants.
+
+- Variable name changes for better readability.
+
+- Remove other sorting algorithms except mergesort.
+
+- Center UI window to user screen (by getting desktop mode with SFML).
